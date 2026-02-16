@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibe To-Do</title>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>Vibe To-Do</h1>
+        <p>Keep your day moving, one task at a time.</p>
+      </header>
+
+      <section class="todo-card" aria-label="Task manager">
+        <form id="todo-form" class="todo-form">
+          <label for="new-task" class="sr-only">New task</label>
+          <input
+            id="new-task"
+            name="newTask"
+            type="text"
+            placeholder="What do you need to do?"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Add</button>
+        </form>
+
+        <div class="filters" role="group" aria-label="Filter tasks">
+          <button data-filter="all" class="is-active">All</button>
+          <button data-filter="active">Active</button>
+          <button data-filter="completed">Completed</button>
+        </div>
+
+        <p id="empty-state" class="empty-state" hidden>
+          Nothing here yet. Add your first task above.
+        </p>
+
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
