@@ -1,0 +1,385 @@
+.todo-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0.75rem 0.65rem;
+  margin-bottom: 0.4rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+
+.todo-row:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.todo-row.drag-over {
+  border-color: var(--accent);
+  background: rgba(232, 168, 74, 0.08);
+}
+
+.todo-row-drag {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: grab;
+  padding: 0.25rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.todo-row-drag:active {
+  cursor: grabbing;
+}
+
+.todo-row[data-priority="high"] {
+  border-left: 3px solid var(--priority-high);
+}
+
+.todo-row[data-priority="medium"] {
+  border-left: 3px solid var(--priority-medium);
+}
+
+.todo-row[data-priority="low"] {
+  border-left: 3px solid var(--priority-low);
+}
+
+.todo-row.completed {
+  opacity: 0.75;
+}
+
+.todo-row.completed .todo-row-text {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.todo-row-check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.todo-row:hover .todo-row-check {
+  border-color: var(--accent);
+}
+
+.todo-row.completed .todo-row-check {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.todo-row-check-mark {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.todo-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-row-text-wrap {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: text;
+  font-family: inherit;
+  font-size: 1rem;
+  color: inherit;
+}
+
+.todo-row-text {
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.todo-row-edit-input {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  outline: none;
+}
+
+.todo-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.todo-row-priority,
+.todo-row-tag-select {
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-row-tag-select {
+  max-width: 6rem;
+}
+
+.todo-row-due {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.15rem 0.45rem;
+  background: var(--bg);
+  border-radius: 6px;
+}
+
+.todo-row-due.overdue {
+  color: var(--danger);
+  background: rgba(212, 93, 93, 0.15);
+}
+
+.todo-row-due.today {
+  color: var(--accent);
+  background: rgba(232, 168, 74, 0.15);
+}
+
+.todo-row-note-btn {
+  padding: 0.15rem 0.35rem;
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.todo-row-note-btn:hover {
+  opacity: 1;
+}
+
+.todo-row-subtasks-btn {
+  padding: 0.15rem 0.35rem;
+  font-family: var(--font);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-row-subtasks-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.todo-row-subtasks-panel {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.todo-row-subtasks-list {
+  margin-bottom: 0.5rem;
+}
+
+.todo-row-subtask {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.todo-row-subtask-check {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  color: transparent;
+}
+
+.todo-row-subtask-check.done {
+  background: var(--priority-low);
+  border-color: var(--priority-low);
+  color: var(--bg);
+}
+
+.todo-row-subtask-text {
+  flex: 1;
+}
+
+.todo-row-subtask-text.done {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.todo-row-subtask-remove {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.todo-row-subtask-remove:hover {
+  color: var(--danger);
+  background: rgba(212, 93, 93, 0.12);
+}
+
+.todo-row-subtask-add {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.todo-row-subtask-add input {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+.todo-row-subtask-add button {
+  padding: 0.35rem 0.6rem;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-row-move {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-row-move:hover {
+  color: var(--accent);
+  background: rgba(232, 168, 74, 0.12);
+}
+
+.todo-row-note-panel {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.todo-row-note-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 52px;
+  outline: none;
+}
+
+.todo-row-note-close {
+  margin-top: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-row-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.todo-row-date-input {
+  padding: 0.35rem 0.4rem;
+  font-family: var(--font);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-row-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.todo-row-delete {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.todo-row-delete:hover {
+  color: var(--danger);
+  background: rgba(212, 93, 93, 0.15);
+}
